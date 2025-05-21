@@ -31,7 +31,7 @@ public class AuthzenMediator extends AbstractMediator {
             Map.entry("Rock Solid Knowledge", "https://authzen.identityserver.com"),
             Map.entry("SGNL", "https://authzen.sgnlapis.cloud"),
             Map.entry("Topaz", "https://topaz-proxy.demo.authzen-interop.net"),
-            Map.entry("WSO2", "https://authzen-interop-demo.wso2.com/api/identity"));
+            Map.entry("WSO2", "https://authzen-interop-demo.wso2support.com/api/identity"));
 
     @Override
     public boolean mediate(MessageContext messageContext) {
