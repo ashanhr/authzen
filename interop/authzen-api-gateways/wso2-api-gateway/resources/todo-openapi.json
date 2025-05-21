@@ -1,0 +1,563 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+     "title": "AuthZENTodo",
+     "description": "AuthZEN Todo API",
+     "version": "1.0.0"
+    },
+    "servers": [
+     {
+      "url": "/"
+     }
+    ],
+    "security": [
+     {
+      "default": []
+     }
+    ],
+    "tags": [
+     {
+      "name": "Standard Todo List Endpoints",
+      "description": "Standard endpoints for managing todos list items."
+     }
+    ],
+    "paths": {
+     "/users/{userId}": {
+      "get": {
+       "tags": [
+        "Standard Todo List Endpoints"
+       ],
+       "summary": "Get user",
+       "description": "Gets information about a user.",
+       "operationId": "b61c0cd1-b380-4440-a430-840ea85f3e9f",
+       "parameters": [
+        {
+         "name": "userId",
+         "in": "path",
+         "required": true,
+         "style": "simple",
+         "explode": false,
+         "schema": {
+          "type": "string"
+         }
+        }
+       ],
+       "responses": {
+        "200": {
+         "description": "Properties of a user",
+         "content": {
+          "application/json": {
+           "schema": {
+            "$ref": "#/components/schemas/UserObject"
+           }
+          }
+         }
+        }
+       },
+       "security": [
+        {
+         "default": []
+        }
+       ],
+       "x-auth-type": "None",
+       "x-throttling-tier": "Unlimited",
+       "x-wso2-application-security": {
+        "security-types": [
+         "oauth2"
+        ],
+        "optional": false
+       }
+      }
+     },
+     "/todos": {
+      "get": {
+       "tags": [
+        "Standard Todo List Endpoints"
+       ],
+       "summary": "Get all todos",
+       "description": "Gets all the todos in the todo list.",
+       "operationId": "b61c0cd1-b380-4440-a430-840ea85f3e9c",
+       "responses": {
+        "200": {
+         "description": "A list of todos",
+         "content": {
+          "application/json": {
+           "schema": {
+            "$ref": "#/components/schemas/TodoListObject"
+           }
+          }
+         }
+        }
+       },
+       "security": [
+        {
+         "default": []
+        }
+       ],
+       "x-auth-type": "None",
+       "x-throttling-tier": "Unlimited",
+       "x-wso2-application-security": {
+        "security-types": [
+         "oauth2"
+        ],
+        "optional": false
+       }
+      },
+      "post": {
+       "tags": [
+        "Standard Todo List Endpoints"
+       ],
+       "summary": "Create Todo",
+       "description": "Creates a todo list item.",
+       "operationId": "f9e30d74-56ca-4f1e-bcb3-75fe305ea5e4",
+       "parameters": [
+        {
+         "name": "Content-Type",
+         "in": "header",
+         "description": "Content type of the request body. Use application/json",
+         "required": true,
+         "style": "simple",
+         "explode": false,
+         "schema": {
+          "type": "string",
+          "example": "application/json"
+         }
+        }
+       ],
+       "requestBody": {
+        "description": "Payload required to create a todo list item.",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/InsertTodoObject"
+          }
+         }
+        },
+        "required": true
+       },
+       "responses": {
+        "201": {
+         "description": "The created todo list item",
+         "content": {
+          "application/json": {
+           "schema": {
+            "$ref": "#/components/schemas/TodoObject"
+           }
+          }
+         }
+        },
+        "400": {
+         "description": "Schema validation error",
+         "content": {
+          "application/json": {
+           "schema": {
+            "$ref": "#/components/schemas/SchemaValidationError"
+           }
+          }
+         }
+        }
+       },
+       "security": [
+        {
+         "default": []
+        }
+       ],
+       "x-auth-type": "None",
+       "x-throttling-tier": "Unlimited",
+       "x-wso2-application-security": {
+        "security-types": [
+         "oauth2"
+        ],
+        "optional": false
+       }
+      }
+     },
+     "/todos/{todoId}": {
+      "put": {
+       "tags": [
+        "Standard Todo List Endpoints"
+       ],
+       "summary": "Update Todo",
+       "description": "Updates a todo list item with a matching `todoId`. Will return an error if a matching todo item is not found.",
+       "operationId": "f3334d8b-37f9-489b-87c5-08a8beb5657c",
+       "parameters": [
+        {
+         "name": "todoId",
+         "in": "path",
+         "description": "ID of the todo list item to be modified.",
+         "required": true,
+         "style": "simple",
+         "explode": false,
+         "schema": {
+          "type": "string",
+          "example": "1",
+          "pattern": "^-?\\d+$"
+         }
+        },
+        {
+         "name": "Content-Type",
+         "in": "header",
+         "description": "Content type of the request body. Use application/json",
+         "required": true,
+         "style": "simple",
+         "explode": false,
+         "schema": {
+          "type": "string",
+          "example": "application/json"
+         }
+        }
+       ],
+       "requestBody": {
+        "description": "Request body to update a todo list object.",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/UpdateTodoObject"
+          }
+         }
+        },
+        "required": true
+       },
+       "responses": {
+        "200": {
+         "description": "The new todo object.",
+         "content": {
+          "application/json": {
+           "schema": {
+            "$ref": "#/components/schemas/TodoObject"
+           }
+          }
+         }
+        },
+        "400": {
+         "description": "Schema validation error",
+         "content": {
+          "application/json": {
+           "schema": {
+            "$ref": "#/components/schemas/SchemaValidationError"
+           }
+          }
+         }
+        }
+       },
+       "security": [
+        {
+         "default": []
+        }
+       ],
+       "x-auth-type": "None",
+       "x-throttling-tier": "Unlimited",
+       "x-wso2-application-security": {
+        "security-types": [
+         "oauth2"
+        ],
+        "optional": false
+       }
+      },
+      "delete": {
+       "tags": [
+        "Standard Todo List Endpoints"
+       ],
+       "summary": "Delete Todo",
+       "description": "Deletes a todo list item. Will return an error if the todo list item does not exist.",
+       "operationId": "1647d06c-2a96-41ab-a2f7-ebb55d5bcd76",
+       "parameters": [
+        {
+         "name": "todoId",
+         "in": "path",
+         "description": "ID of the todo list item to be deleted.",
+         "required": true,
+         "style": "simple",
+         "explode": false,
+         "schema": {
+          "type": "string",
+          "example": "1",
+          "pattern": "^-?\\d+$"
+         }
+        }
+       ],
+       "responses": {
+        "200": {
+         "description": "Empty response.",
+         "content": {
+          "application/json": {
+           "schema": {
+            "type": "object"
+           }
+          }
+         }
+        },
+        "400": {
+         "description": "Schema validation error",
+         "content": {
+          "application/json": {
+           "schema": {
+            "$ref": "#/components/schemas/SchemaValidationError"
+           }
+          }
+         }
+        }
+       },
+       "security": [
+        {
+         "default": []
+        }
+       ],
+       "x-auth-type": "None",
+       "x-throttling-tier": "Unlimited",
+       "x-wso2-application-security": {
+        "security-types": [
+         "oauth2"
+        ],
+        "optional": false
+       }
+      }
+     },
+     "/*": {
+      "get": {
+       "parameters": [],
+       "responses": {
+        "200": {
+         "description": "ok"
+        }
+       },
+       "security": [
+        {
+         "default": []
+        }
+       ],
+       "x-auth-type": "None",
+       "x-throttling-tier": "Unlimited",
+       "x-wso2-application-security": {
+        "security-types": [
+         "oauth2"
+        ],
+        "optional": false
+       }
+      }
+     }
+    },
+    "components": {
+     "schemas": {
+      "TodoObject": {
+       "type": "object",
+       "properties": {
+        "ID": {
+         "type": "integer"
+        },
+        "OwnerID": {
+         "type": "integer"
+        },
+        "Title": {
+         "type": "string"
+        },
+        "Completed": {
+         "type": "boolean"
+        }
+       },
+       "required": [
+        "Completed",
+        "ID",
+        "OwnerID",
+        "Title"
+       ]
+      },
+      "AnonymousTodoObject": {
+       "type": "object",
+       "properties": {
+        "ID": {
+         "type": "integer"
+        },
+        "Title": {
+         "type": "string"
+        },
+        "Completed": {
+         "type": "boolean"
+        }
+       },
+       "required": [
+        "Completed",
+        "ID",
+        "Title"
+       ]
+      },
+      "TodoListObject": {
+       "type": "array",
+       "items": {
+        "$ref": "#/components/schemas/TodoObject"
+       }
+      },
+      "InsertTodoObject": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "OwnerID": {
+         "type": "integer",
+         "description": "The userId that created the todo list item."
+        },
+        "Title": {
+         "type": "string",
+         "description": "The title of the todo list item."
+        },
+        "Completed": {
+         "type": "boolean",
+         "description": "Whether or not the todo list item is completed."
+        }
+       },
+       "required": [
+        "Completed",
+        "OwnerID",
+        "Title"
+       ],
+       "title": "Todo Insert Schema"
+      },
+      "UpdateTodoObject": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "OwnerID": {
+         "type": "integer",
+         "description": "The OwnerID that created the todo list item."
+        },
+        "title": {
+         "type": "string",
+         "description": "The title of the todo list item."
+        },
+        "Completed": {
+         "type": "boolean",
+         "description": "Whether or not the todo list item is completed."
+        }
+       },
+       "required": [
+        "Completed",
+        "OwnerID",
+        "Title"
+       ],
+       "title": "Update Todo Object"
+      },
+      "SchemaValidationError": {
+       "type": "object",
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "status": {
+         "type": "integer"
+        },
+        "detail": {
+         "type": "string"
+        },
+        "instance": {
+         "type": "string"
+        },
+        "trace": {
+         "type": "object"
+        },
+        "errors": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         },
+         "minItems": 1
+        }
+       },
+       "required": [
+        "detail",
+        "instance",
+        "status",
+        "title",
+        "type"
+       ]
+      },
+      "UserObject": {
+       "type": "object",
+       "properties": {
+        "id": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "email": {
+         "type": "string"
+        },
+        "picture": {
+         "type": "string"
+        },
+        "roles": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       }
+      }
+     },
+     "securitySchemes": {
+      "default": {
+       "type": "oauth2",
+       "flows": {
+        "implicit": {
+         "authorizationUrl": "https://test.com",
+         "scopes": {}
+        }
+       }
+      }
+     }
+    },
+    "x-wso2-api-key-header": "ApiKey",
+    "x-wso2-auth-header": "Authorization",
+    "x-wso2-cors": {
+     "corsConfigurationEnabled": false,
+     "accessControlAllowOrigins": [
+      "*"
+     ],
+     "accessControlAllowCredentials": false,
+     "accessControlAllowHeaders": [
+      "authorization",
+      "Access-Control-Allow-Origin",
+      "Content-Type",
+      "SOAPAction",
+      "apikey",
+      "Internal-Key"
+     ],
+     "accessControlAllowMethods": [
+      "GET",
+      "PUT",
+      "POST",
+      "DELETE",
+      "PATCH",
+      "OPTIONS"
+     ]
+    },
+    "x-wso2-production-endpoints": {
+     "urls": [
+      "https://authzen-todo-backend.demo.aserto.com/"
+     ],
+     "type": "http"
+    },
+    "x-wso2-sandbox-endpoints": {
+     "urls": [
+      "https://authzen-todo-backend.demo.aserto.com/"
+     ],
+     "type": "http"
+    },
+    "x-wso2-basePath": "/authzentodo/1.0.0",
+    "x-wso2-transports": [
+     "http",
+     "https"
+    ],
+    "x-wso2-application-security": {
+     "security-types": [
+      "oauth2"
+     ],
+     "optional": false
+    },
+    "x-wso2-response-cache": {
+     "enabled": false,
+     "cacheTimeoutInSeconds": 300
+    }
+   }
