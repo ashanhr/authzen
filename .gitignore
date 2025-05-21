@@ -31,3 +31,6 @@ yarn-error.log*
 todo.db
 
 .vscode/
+
+interop/authzen-api-gateways/wso2-api-gateway/wso2am-4.5.0
+interop/authzen-api-gateways/wso2-api-gateway/authzen-mediator/target

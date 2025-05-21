@@ -96,10 +96,10 @@
     "endpointConfig": {
         "endpoint_type": "http",
         "sandbox_endpoints": {
-            "url": "https://authzen-todo-backend.demo.aserto.com/"
+            "url": "https://todo-backend.authzen-interop.net/"
         },
         "production_endpoints": {
-            "url": "https://authzen-todo-backend.demo.aserto.com/"
+            "url": "https://todo-backend.authzen-interop.net/"
         }
     },
     "endpointImplementationType": "ENDPOINT",
